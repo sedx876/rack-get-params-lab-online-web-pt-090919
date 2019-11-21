@@ -19,20 +19,19 @@ class Application
       if @@cart.empty?
         resp.write "Your cart is empty"
       else
-        @@cart.each do |cart_item|
-          resp.write "#{cart_item}\n"
-        end
-      end
-    elsif req.path.match(/add/)
-      item_add = req.GET["item"]
-      if @@items.include?(item_add)
-        @@cart << item_add
-        resp.write "added #{item_add}"
-      else
-        resp.write "We don't have that item"
-      end
-    else
-      return "Couldn't find #{search_term}"
+        @@cart.each do |item|
+        resp.write "#{item}\n"
     end
   end
+    elsif
+      req.path.match(/add/)
+      add_item = req.params["item"]
+      if @@items.include? add_item
+        @@cart << add_item
+        resp.write "added #{add_item}"
+      else
+        resp.write "We don't have that item"
+    end
+  else
+            resp.write "Path Not Found"
 end
