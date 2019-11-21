@@ -33,3 +33,4 @@ class Application
     else
         resp.write "Path Not Found"
     end
+end
